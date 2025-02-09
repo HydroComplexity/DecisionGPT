@@ -1,0 +1,90 @@
+version: '3'
+
+networks:
+  gptnet:
+    driver: overlay
+
+services:
+  agent1:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src/
+    command: python /mnt/src/micro/agent.py --role mayor --use latest
+    volumes:
+      - './:/mnt'
+    networks:
+      gptnet:
+        aliases:
+          - agent1
+    restart: 'no'
+
+  agent2:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src/
+    command: python /mnt/src/micro/agent.py --role scientist --use latest
+    volumes:
+      - './:/mnt'
+    networks:
+      - gptnet
+    restart: 'no'
+
+  agent3:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src/
+    command: python /mnt/src/micro/agent.py --role spokesperson --use latest
+    volumes:
+      - './:/mnt'
+    networks:
+      - gptnet
+    restart: 'no'
+
+  agent4:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src/
+    command: python /mnt/src/micro/agent.py --role moderator --use latest
+    volumes:
+      - './:/mnt'
+    networks:
+      - gptnet
+    restart: 'no'
+
+  view:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src
+    command: python /mnt/src/macro/chat_mainframe.py
+    ports:
+      - "8080:8080"
+    volumes:
+      - './:/mnt'
+    networks:
+      - gptnet
+    restart: 'no'
+
+  conference_room:
+    image: python_gpt:latest
+    environment:
+      PYTHONPATH: /mnt/src/
+    command: python /mnt/src/macro/conference_room.py --use latest
+    volumes:
+      - './:/mnt'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - gptnet
+    restart: 'no'
+
+  queue:
+    image: rabbitmq:latest
+    networks:
+      gptnet:
+        aliases:
+          - rmqueue
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 2s
+      timeout: 30s
+      retries: 10
+    restart: 'no'

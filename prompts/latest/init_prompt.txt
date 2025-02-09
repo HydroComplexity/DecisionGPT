@@ -1,0 +1,14 @@
+We are in a US midwestern township of half a million inhabitants. 
+		A large river flows through this township which is also fed by a large
+		watershed in which the township is located. There is forecast for very heavy
+		rain and possibility of flooding at large scale. Consider that the
+		probability of flooding is 90%. The township needs to make anticipatory
+		decision to respond to the impending event to minimize the impact of 
+		floods but also keep in mind the needs of the community which relies on the
+		river water. A reservoir downstream of the town supports potable water needs,
+		provide energy, and recreational needs. The river also supports navigational
+		and commercial traffic. Decisions regarding the management of reservoir
+		levels is part of the decision variables available. At the end of the
+		conversation, a strategy needs to be developed to manage to outcome of the
+		floods keeping in mind uncertainty of the event, noting that different
+		probabilities of risks may justifiy different approaches.
