@@ -1,0 +1,44 @@
+networks:
+  reflexnet:
+    driver: bridge
+
+services:
+  rmq:
+    image: rabbitmq:latest
+    networks:
+      reflexnet:
+        aliases:
+          - queue
+
+  view:
+    image: frontend_python_2
+    volumes:
+      - .:/mnt
+    working_dir: /mnt
+    command: reflex run
+    ports:
+      - 3000:3000
+      - 8000:8000
+    depends_on:
+      - rmq
+    networks:
+      - reflexnet
+
+  genai:
+    image: frontend_python_2
+    depends_on:
+      - rmq
+    volumes:
+      - .:/mnt
+      - ../../logs:/logs
+    working_dir: /mnt
+    command: python moderator_agent.py
+    networks:
+      - reflexnet
+
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmqctl status"]
+      interval: 2s
+      start_period: 2s
+      retries: 10
+

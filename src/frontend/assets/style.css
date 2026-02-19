@@ -1,0 +1,12 @@
+.blur-gradient {
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+  mask-image: linear-gradient(
+  	to bottom,
+  	whitesmoke 25%,
+  	whitesmoke 50%,
+  	whitesmoke 75%,
+  	transparent
+	);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+}
