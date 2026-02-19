@@ -1,0 +1,12 @@
+.env
+src/frontend/.web/
+src/frontend/frontend/__pycache__/
+src/frontend/__pycache__/
+src/frontend/.env
+src/frontend/frontend/.DS_Store
+src/.DS_Store
+src/misc/
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
