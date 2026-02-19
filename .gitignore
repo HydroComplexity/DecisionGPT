@@ -11,3 +11,4 @@ src/misc/
 **/.DS_Store
 **/._.DS_Store
 **/__pycache__/
+src/frontend/.env
