@@ -1,21 +1,21 @@
 # DecisionGPT
 
-This framework implements a multi-agent LLM for decision-making discourse running with Docker Swarm
+This framework implements a multi-agent LLM for decision-making discourse running on Google ADK, and using docker compose to structure the frontend, backend and intra-process communication.
 
 ### Requirements
 
-- Docker Swarm (shipped with Docker); https://www.docker.com/
+- Docker
 
 ### Setup
 
-The python_gpt image needs to be built in order to run the framework. While in the decisiongpt directory, execute buildimage.sh
+The decisiongpt_backend image needs to be built in order to run the framework. While in the decisiongpt directory, execute:
+
 
 ```bash
 # in the decisiongpt folder
+# this is important to run this command in the src/frontend directory directly, otherwise docker build won't be able to find requirements.txt
+docker build -t decisiongpt_backend .
 
-sh buildimage.sh
-
-docker pull rabbitmq:latest
 ```
 
 Fill in OpenAI API credentials in .env

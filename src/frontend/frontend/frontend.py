@@ -10,12 +10,6 @@ from frontend.components.chat_interface import chat_interface
 
 print(os.getenv("REFLEX_HOT_RELOAD_EXCLUDE_PATHS"), flush=True)
 
-class Config(rx.Config) :
-	# app_name = "DecisionGPT",
-	ignore_patterns = [
-		"tmp.log"
-	]
-
 def index() -> rx.Component:
 	
 	return rx.box(
@@ -27,6 +21,7 @@ def index() -> rx.Component:
 		on_mount=ChatState.initial_connect,
 		class_name="!bg-slate-50 w-screen h-screen",
 	)
+
 
 app = rx.App(stylesheets=["style.css"])
 app.add_page(index)
