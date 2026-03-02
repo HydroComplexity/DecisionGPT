@@ -56,30 +56,21 @@ self.client = openai.OpenAI(
 
 ```bash
 # start the swarm service
+# navigate to the src/frontend directory
 
-sh start_swarm.sh
+cd src/frontend
 
 # run the framework
 
-sh deploy_swarm.sh
+./start.sh
+
+# if this doesn't run, you might have to give permissions
+
+sudo chmod +x start.sh
 
 # agent logs and conference_room logs are recorded in out/logs/
 # container real time output can be viewed with
 
-docker service logs -f --tail 100 decisiongpt_conference_room
-docker service logs -f --tail 100 decisiongpt_agent1
-docker service logs -f --tail 100 decisiongpt_agent2
-...
-
-# In a web browser, browse to localhost:8080 to display the GUI,
-# once ./deploy_swarm.sh has been executed.
-
-# Stop the framework with
-
-sh retreat_swarm.sh
-
-# Once you want to stop running the framework, disable swarm mode
-# with
-
-sh stop_swarm.sh
+# Once you want to stop running the framework, use:
+./stop.sh
 ```
